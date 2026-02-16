@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: mission-control-v4-api
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: TOTP_SECRET
+        value: JBSWY3DPEHPK3PXP
+      - key: TOTP_USER
+        value: carvalhojose321@gmail.com
+      - key: ALLOWED_EMAIL
+        value: carvalhojose321@gmail.com
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: ALLOWED_ORIGINS
+        value: https://raghatonibot.github.io,https://missioncontrol.carvalhoai.com
