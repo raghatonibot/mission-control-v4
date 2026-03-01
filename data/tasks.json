@@ -1,0 +1,157 @@
+﻿[
+  {
+    "id": "task_mm7ebn8e_5vm1xv",
+    "title": "RAGHA",
+    "description": "Integrar fluxo principal + iniciar Shadow Mode de memÃ³ria nova",
+    "priority": "high",
+    "status": "backlog",
+    "createdAt": "2026-03-01T06:55:42.686Z",
+    "updatedAt": "2026-03-01T06:55:42.686Z",
+    "source": "telegram",
+    "approved": false
+  },
+  {
+    "id": "task_mm7d0zha_4hka8q",
+    "title": "RAGHA",
+    "description": "Preparar playbook de migraÃ§Ã£o de memÃ³ria (Go/No-Go + rollback)",
+    "priority": "high",
+    "status": "ready",
+    "createdAt": "2026-03-01T06:19:25.726Z",
+    "updatedAt": "2026-03-01T06:20:26.660Z",
+    "source": "telegram",
+    "approved": true
+  },
+  {
+    "id": "task_mm7cjcig_wqvjjd",
+    "title": "RAGHA",
+    "description": "Expandir execuÃ§Ã£o com +3 fases e acelerar entrega de evidÃªncias P0",
+    "priority": "high",
+    "status": "backlog",
+    "createdAt": "2026-03-01T06:05:42.808Z",
+    "updatedAt": "2026-03-01T06:05:42.808Z",
+    "source": "telegram",
+    "approved": false
+  },
+  {
+    "id": "task_mm7aa156_8cke4w",
+    "title": "RAGHA",
+    "description": "Planejamento definitivo da memÃ³ria persistente (robustez + economia de tokens)",
+    "priority": "high",
+    "status": "ready",
+    "createdAt": "2026-03-01T05:02:28.938Z",
+    "updatedAt": "2026-03-01T05:29:20.509Z",
+    "source": "telegram",
+    "approved": true
+  },
+  {
+    "id": "task_mm78hmmq_flradd",
+    "title": "BLACKWIDOW",
+    "description": "Validar claim do post Reddit sobre mem0-only resolver memÃ³ria persistente",
+    "priority": "high",
+    "status": "backlog",
+    "createdAt": "2026-03-01T04:12:24.146Z",
+    "updatedAt": "2026-03-01T04:12:24.146Z",
+    "source": "telegram",
+    "approved": false
+  },
+  {
+    "id": "task_mm7835t2_zgwgwv",
+    "title": "RAGHA",
+    "description": "Avaliar uso do supermemory.ai na arquitetura de memÃ³ria",
+    "priority": "medium",
+    "status": "backlog",
+    "createdAt": "2026-03-01T04:01:09.158Z",
+    "updatedAt": "2026-03-01T04:01:09.158Z",
+    "source": "telegram",
+    "approved": false
+  },
+  {
+    "id": "task_mm77ovtl_49tp9s",
+    "title": "BLACKWIDOW",
+    "description": "Ler post Reddit e comentÃ¡rios completos: https://www.reddit.com/r/openclaw/s/TBjFzURaZ4",
+    "priority": "medium",
+    "status": "in_progress",
+    "createdAt": "2026-03-01T03:50:03.033Z",
+    "updatedAt": "2026-03-01T03:52:50.285Z",
+    "source": "telegram",
+    "approved": true
+  },
+  {
+    "id": "task_mm77hcoy_3o8lq0",
+    "title": "RAGHA",
+    "description": "Redesenhar memÃ³ria para economia de tokens sem perda de qualidade",
+    "priority": "high",
+    "status": "backlog",
+    "createdAt": "2026-03-01T03:44:11.650Z",
+    "updatedAt": "2026-03-01T03:44:11.650Z",
+    "source": "telegram",
+    "approved": false
+  },
+  {
+    "id": "task_mm77b5f4_tfld4n",
+    "title": "RAGHA",
+    "description": "Pesquisa profunda GitHub+X para arquitetura de memÃ³ria Ã  prova de falhas",
+    "priority": "high",
+    "status": "ready",
+    "createdAt": "2026-03-01T03:39:22.288Z",
+    "updatedAt": "2026-03-01T03:39:31.566Z",
+    "source": "telegram",
+    "approved": true
+  },
+  {
+    "id": "task_mm76v43i_ma2ic5",
+    "title": "Sistema local de memÃ³ria persistente para o Ragha",
+    "description": "Pesquisa profunda (internet + GitHub) de projetos open-source para memÃ³ria de agente local, com foco em self-hosted, baixo custo e fÃ¡cil integraÃ§Ã£o no OpenClaw.",
+    "priority": "high",
+    "status": "backlog",
+    "createdAt": "2026-03-01T03:26:54.078Z",
+    "updatedAt": "2026-03-01T00:26:54.1615136-03:00",
+    "source": "telegram",
+    "approved": false
+  },
+  {
+    "id": "task_mm76ru6t_5qt2bg",
+    "title": "CorreÃ§Ã£o definitiva da memÃ³ria operacional do Ragha",
+    "description": "Implantar protocolo anti-esquecimento: gatilhos obrigatÃ³rios, checklist de execuÃ§Ã£o, validaÃ§Ã£o automÃ¡tica e testes de regressÃ£o fluxo Telegram/Kanban.",
+    "priority": "high",
+    "status": "done",
+    "createdAt": "2026-03-01T03:24:21.269Z",
+    "updatedAt": "2026-03-01T00:26:30.9759365-03:00",
+    "source": "telegram",
+    "approved": true
+  },
+  {
+    "id": "task_mm76iipl_0saxh8",
+    "title": "CertificaÃ§Ã£o 9/9 de skills dos agentes",
+    "description": "RodarÃ­gido por agente (skill correta + evidÃªncia real + sem desvio), corrigir guardrails e fechar 9/9 PASS.",
+    "priority": "high",
+    "status": "backlog",
+    "createdAt": "2026-03-01T03:17:06.489Z",
+    "updatedAt": "2026-03-01T00:22:57.8643442-03:00",
+    "source": "telegram",
+    "approved": false
+  },
+  {
+    "id": "task_whitelabel_openclaw_studio_1772303048",
+    "title": "PENDENTE",
+    "description": "Construir produto white-label leigo baseado em OpenClaw Studio",
+    "priority": "high",
+    "status": "backlog",
+    "createdAt": "2026-02-28T15:24:08.8096953-03:00",
+    "updatedAt": "2026-02-28T16:09:19.3970847-03:00",
+    "source": "telegram",
+    "approved": false
+  },
+  {
+    "id": "task_awesome_skills_1772297543",
+    "title": "IRONMAN",
+    "description": "",
+    "priority": "medium",
+    "status": "done",
+    "createdAt": "2026-02-28T13:52:23.6169433-03:00",
+    "updatedAt": "2026-02-28T14:01:07.9451637-03:00",
+    "source": "telegram",
+    "approved": true
+  }
+]
+

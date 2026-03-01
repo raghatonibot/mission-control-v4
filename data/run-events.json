@@ -1,0 +1,141 @@
+[
+  {
+    "runId": "run_openclaw_studio_product_1772300692",
+    "at": 1772303126063,
+    "type": "status",
+    "status": "running",
+    "attempt": 1
+  },
+  {
+    "runId": "run_openclaw_studio_product_1772300692",
+    "at": 1772303127383,
+    "type": "spawn",
+    "result": {
+      "sessionKey": "agent:main:subagent:0e052a46-de72-4ea1-8e3c-276548d67e56"
+    }
+  },
+  {
+    "runId": "run_openclaw_studio_product_1772300692",
+    "at": 1772303130099,
+    "type": "usage_estimate",
+    "model": "openai-codex/gpt-5.3-codex",
+    "tokensOutEst": 1
+  },
+  {
+    "runId": "run_openclaw_studio_product_1772300692",
+    "at": 1772303130102,
+    "type": "status",
+    "status": "failed",
+    "failureKind": "empty_output"
+  },
+  {
+    "runId": "run_mm76pmz5_e5q4v2",
+    "at": 1772335358611,
+    "type": "created",
+    "taskId": "task_mm76iipl_0saxh8",
+    "agentId": "ragha"
+  },
+  {
+    "runId": "run_mm76pmz5_e5q4v2",
+    "at": 1772335358618,
+    "type": "status",
+    "status": "running",
+    "attempt": 1
+  },
+  {
+    "runId": "run_mm76pmz5_e5q4v2",
+    "at": 1772335360107,
+    "type": "spawn",
+    "result": {
+      "sessionKey": "agent:main:subagent:3328eb19-2fb2-4f0e-ae0a-df1b05cc2b0b"
+    }
+  },
+  {
+    "runId": "run_mm76pmz5_e5q4v2",
+    "at": 1772335363459,
+    "type": "usage_estimate",
+    "model": "openai-codex/gpt-5.3-codex",
+    "tokensOutEst": 1
+  },
+  {
+    "runId": "run_mm76pmz5_e5q4v2",
+    "at": 1772335363464,
+    "type": "status",
+    "status": "failed",
+    "failureKind": "empty_output"
+  },
+  {
+    "runId": "run_mm77rgik_bm1880",
+    "at": 1772337123167,
+    "type": "created",
+    "taskId": "task_mm77ovtl_49tp9s",
+    "agentId": "monica",
+    "from": "task-start"
+  },
+  {
+    "runId": "run_mm77rgik_bm1880",
+    "at": 1772337123570,
+    "type": "status",
+    "status": "running",
+    "attempt": 1
+  },
+  {
+    "runId": "run_mm77rgik_bm1880",
+    "at": 1772337124789,
+    "type": "spawn",
+    "result": {
+      "sessionKey": "agent:main:subagent:8c78142f-b143-4829-b7ef-890f6bb6f876"
+    }
+  },
+  {
+    "runId": "run_mm77rgik_bm1880",
+    "at": 1772337126979,
+    "type": "usage_estimate",
+    "model": "kimi-coding/k2p5",
+    "tokensOutEst": 1
+  },
+  {
+    "runId": "run_mm77rgik_bm1880",
+    "at": 1772337126983,
+    "type": "status",
+    "status": "failed",
+    "failureKind": "empty_output"
+  },
+  {
+    "runId": "run_mm77rom3_guz6m3",
+    "at": 1772337133662,
+    "type": "created",
+    "taskId": "task_mm77ovtl_49tp9s",
+    "agentId": "monica",
+    "from": "task-start"
+  },
+  {
+    "runId": "run_mm77rom3_guz6m3",
+    "at": 1772337134044,
+    "type": "status",
+    "status": "running",
+    "attempt": 1
+  },
+  {
+    "runId": "run_mm77rom3_guz6m3",
+    "at": 1772337135395,
+    "type": "spawn",
+    "result": {
+      "sessionKey": "agent:main:subagent:79234931-8401-4af8-9d09-6d4018af3c41"
+    }
+  },
+  {
+    "runId": "run_mm77rom3_guz6m3",
+    "at": 1772337139002,
+    "type": "usage_estimate",
+    "model": "kimi-coding/k2p5",
+    "tokensOutEst": 1
+  },
+  {
+    "runId": "run_mm77rom3_guz6m3",
+    "at": 1772337139007,
+    "type": "status",
+    "status": "failed",
+    "failureKind": "empty_output"
+  }
+]

@@ -1,0 +1,103 @@
+{
+  "version": "v1",
+  "updatedAt": "2026-02-26",
+  "entrypoint": "telegram",
+  "orchestrator": "ragha",
+  "agents": [
+    {
+      "id": "jarvis",
+      "name": "Jarvis",
+      "role": "NOC + monitoramento + alertas",
+      "slaMinutes": 15,
+      "kpis": ["mttr", "incidentes_detectados"]
+    },
+    {
+      "id": "fury",
+      "name": "Fury",
+      "role": "PMO + priorizacao",
+      "slaMinutes": 30,
+      "kpis": ["throughput", "wip_compliance"]
+    },
+    {
+      "id": "shuri",
+      "name": "Shuri",
+      "role": "engenharia/implementacao",
+      "slaMinutes": 120,
+      "kpis": ["lead_time", "build_success_rate"]
+    },
+    {
+      "id": "hulk",
+      "name": "Hulk",
+      "role": "QA + validacao",
+      "slaMinutes": 45,
+      "kpis": ["bug_escape_rate", "test_pass_rate"]
+    },
+    {
+      "id": "pepper",
+      "name": "Pepper",
+      "role": "documentacao + operacao",
+      "slaMinutes": 60,
+      "kpis": ["sop_coverage", "handoff_quality"]
+    }
+  ],
+  "handoffPolicy": {
+    "requireEvidence": true,
+    "requireQaGate": true,
+    "criticalNeedsHumanApproval": true
+  },
+  "playbook": {
+    "sopVersion": "v1",
+    "agents": {
+      "jarvis": {
+        "sop": [
+          "Verificar health, watchdog e alertas.",
+          "Classificar severidade (P1/P2/P3).",
+          "Notificar com impacto e ETA.",
+          "Escalonar para Shuri/Hulk quando necessário."
+        ],
+        "slaMinutes": 15,
+        "kpi": ["mttr", "alert_precision"]
+      },
+      "fury": {
+        "sop": [
+          "Receber objetivo e contexto.",
+          "Quebrar em tarefas com prioridade.",
+          "Definir dono por etapa.",
+          "Revisar WIP e desbloquear gargalos."
+        ],
+        "slaMinutes": 30,
+        "kpi": ["throughput", "wip_limit_compliance"]
+      },
+      "shuri": {
+        "sop": [
+          "Implementar mudança mínima viável.",
+          "Garantir build/teste local.",
+          "Entregar evidência técnica.",
+          "Preparar rollback."
+        ],
+        "slaMinutes": 120,
+        "kpi": ["build_success_rate", "lead_time"]
+      },
+      "hulk": {
+        "sop": [
+          "Executar checklist de QA.",
+          "Validar critérios de pronto.",
+          "Registrar bugs e severidade.",
+          "Aprovar/rejeitar com justificativa."
+        ],
+        "slaMinutes": 45,
+        "kpi": ["test_pass_rate", "bug_escape_rate"]
+      },
+      "pepper": {
+        "sop": [
+          "Documentar SOP final da entrega.",
+          "Registrar responsáveis e rotina.",
+          "Atualizar checklist operacional.",
+          "Consolidar handoff para operação."
+        ],
+        "slaMinutes": 60,
+        "kpi": ["sop_coverage", "handoff_quality"]
+      }
+    }
+  }
+}

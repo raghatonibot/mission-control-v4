@@ -1,0 +1,56 @@
+﻿[
+  {
+    "id": "note_mm77bckp_l2cc7t",
+    "at": 1772336371561,
+    "entityType": "task",
+    "entityId": "task_mm77b5f4_tfld4n",
+    "kind": "finding",
+    "text": "Pesquisa concluda. Arquivo: memory-fabric/research-memory-github-x-2026-03-01.md",
+    "author": "system"
+  },
+  {
+    "id": "note_mm77ed84_8bdvn5",
+    "at": 1772336512372,
+    "entityType": "task",
+    "entityId": "task_mm77b5f4_tfld4n",
+    "kind": "comment",
+    "text": "usuÃ¡rio pediu redesenho: arquitetura com RAG+pgvector no núcleo semântico.",
+    "author": "system"
+  },
+  {
+    "id": "note_mm77f66e_z9uc5m",
+    "at": 1772336549894,
+    "entityType": "task",
+    "entityId": "task_mm77b5f4_tfld4n",
+    "kind": "finding",
+    "text": "Redesign aprovaÃ§Ã£oncludo. Documento: memory-fabric/redesign-rag-pgvector-2026-03-01.md",
+    "author": "system"
+  },
+  {
+    "id": "note_mm77p69e_d6hxgu",
+    "at": 1772337016561,
+    "entityType": "task",
+    "entityId": "task_mm77ovtl_49tp9s",
+    "kind": "comment",
+    "text": "execuÃ§Ã£or selecionado: AVENGERS (BLACKWIDOW). Subagente iniciado: agent:blackwidow:subagent:6b645f9f-2108-4b16-9499-eb876f639a5a",
+    "author": "system"
+  },
+  {
+    "id": "note_mm7b8kmw_avagl9",
+    "at": 1772342960503,
+    "entityType": "task",
+    "entityId": "task_mm7aa156_8cke4w",
+    "kind": "finding",
+    "text": "Blueprint definitivo concluído: memory-fabric/blueprint-definitivo-memÃ³ria-2026-03-01.md",
+    "author": "system"
+  },
+  {
+    "id": "note_mm7d2ahs_sma91j",
+    "at": 1772346026655,
+    "entityType": "task",
+    "entityId": "task_mm7d0zha_4hka8q",
+    "kind": "finding",
+    "text": "Playbook de migraÃ§Ã£oncludo: memory-fabric/PLAYBOOK-migraÃ§Ã£o-memÃ³ria.md",
+    "author": "system"
+  }
+]

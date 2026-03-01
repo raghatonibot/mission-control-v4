@@ -1,0 +1,10 @@
+{
+  "rules": [
+    { "when": "monitoramento|erro|queda|alerta", "assign": ["jarvis"] },
+    { "when": "priorizar|planejar|backlog|sprint", "assign": ["fury"] },
+    { "when": "corrigir|implementar|deploy|codigo", "assign": ["shuri", "hulk"] },
+    { "when": "qa|teste|validar|evidencia", "assign": ["hulk"] },
+    { "when": "documentar|playbook|sop", "assign": ["pepper"] }
+  ],
+  "default": ["fury", "shuri", "hulk"]
+}

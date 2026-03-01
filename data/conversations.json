@@ -1,0 +1,229 @@
+[
+  {
+    "id": "conv-hawkeye",
+    "agentId": "hawkeye",
+    "agentName": "Hawkeye",
+    "agentAvatar": "/agents/hawkeye.svg",
+    "agentStatus": "idle",
+    "lastMessage": "",
+    "lastMessageTime": "",
+    "unreadCount": 0,
+    "messages": []
+  },
+  {
+    "id": "conv-blackwidow",
+    "agentId": "blackwidow",
+    "agentName": "BlackWidow",
+    "agentAvatar": "/agents/blackwidow.svg",
+    "agentStatus": "idle",
+    "lastMessage": "",
+    "lastMessageTime": "",
+    "unreadCount": 0,
+    "messages": []
+  },
+  {
+    "id": "conv-pepper",
+    "agentId": "pepper",
+    "agentName": "Pepper",
+    "agentAvatar": "/agents/pepper.svg",
+    "agentStatus": "idle",
+    "lastMessage": "",
+    "lastMessageTime": "",
+    "unreadCount": 0,
+    "messages": []
+  },
+  {
+    "id": "conv-thor",
+    "agentId": "thor",
+    "agentName": "Thor",
+    "agentAvatar": "/agents/thor.svg",
+    "agentStatus": "idle",
+    "lastMessage": "",
+    "lastMessageTime": "",
+    "unreadCount": 0,
+    "messages": []
+  },
+  {
+    "id": "conv-shuri",
+    "agentId": "shuri",
+    "agentName": "Shuri",
+    "agentAvatar": "/agents/shuri.svg",
+    "agentStatus": "active",
+    "lastMessage": "Estou rodando no modelo **kimi-coding/k2p5** (Kimi K2.5).",
+    "lastMessageTime": "2026-02-28T16:28:24.313Z",
+    "unreadCount": 0,
+    "messages": [
+      {
+        "id": "msg_mm6jbro9_bsk1al",
+        "senderId": "user",
+        "senderName": "Você",
+        "content": "Shuri, está ai?",
+        "timestamp": "2026-02-28T16:28:00.345Z",
+        "isUser": true
+      },
+      {
+        "id": "msg_mm6jbxwe_nc166v",
+        "senderId": "shuri",
+        "senderName": "Shuri",
+        "senderAvatar": "/agents/shuri.svg",
+        "content": "Tô aqui. Fala.",
+        "timestamp": "2026-02-28T16:28:08.414Z",
+        "isUser": false
+      },
+      {
+        "id": "msg_mm6jc45b_d9wp2a",
+        "senderId": "user",
+        "senderName": "Você",
+        "content": "Qual modelo você está usando?",
+        "timestamp": "2026-02-28T16:28:16.511Z",
+        "isUser": true
+      },
+      {
+        "id": "msg_mm6jca61_e1q3um",
+        "senderId": "shuri",
+        "senderName": "Shuri",
+        "senderAvatar": "/agents/shuri.svg",
+        "content": "Estou rodando no modelo **kimi-coding/k2p5** (Kimi K2.5).",
+        "timestamp": "2026-02-28T16:28:24.313Z",
+        "isUser": false
+      }
+    ]
+  },
+  {
+    "id": "conv-fury",
+    "agentId": "fury",
+    "agentName": "Fury",
+    "agentAvatar": "/agents/fury.svg",
+    "agentStatus": "active",
+    "lastMessage": "Estou usando o **Kimi K2.5** (kimi-coding/k2p5).",
+    "lastMessageTime": "2026-02-26T19:29:08.256Z",
+    "unreadCount": 0,
+    "messages": [
+      {
+        "id": "msg_mm3uvrdh_1i7dyt",
+        "senderId": "user",
+        "senderName": "Você",
+        "content": "Oi fury",
+        "timestamp": "2026-02-26T19:28:10.324Z",
+        "isUser": true
+      },
+      {
+        "id": "msg_mm3uvv0i_i4igv3",
+        "senderId": "fury",
+        "senderName": "Fury",
+        "senderAvatar": "/agents/fury.svg",
+        "content": "Oi. Sou Ragha — braço direito de operação e estratégia. Tô aqui pra priorizar, organizar e resolver. Sem enrolação. O que precisa?",
+        "timestamp": "2026-02-26T19:28:15.042Z",
+        "isUser": false
+      },
+      {
+        "id": "msg_mm3uw3ei_3fldly",
+        "senderId": "user",
+        "senderName": "Você",
+        "content": "Você é o ragha?",
+        "timestamp": "2026-02-26T19:28:25.914Z",
+        "isUser": true
+      },
+      {
+        "id": "msg_mm3uw71j_gz46ez",
+        "senderId": "fury",
+        "senderName": "Fury",
+        "senderAvatar": "/agents/fury.svg",
+        "content": "Não. Sou Fury, agente de priorização. Ragha é o agente principal/CEO — ele quem me chamou pra te atender.",
+        "timestamp": "2026-02-26T19:28:30.631Z",
+        "isUser": false
+      },
+      {
+        "id": "msg_mm3uwv77_6bhm4a",
+        "senderId": "user",
+        "senderName": "Você",
+        "content": "Qual modelo você está usando?",
+        "timestamp": "2026-02-26T19:29:01.938Z",
+        "isUser": true
+      },
+      {
+        "id": "msg_mm3ux02o_e4ouaa",
+        "senderId": "fury",
+        "senderName": "Fury",
+        "senderAvatar": "/agents/fury.svg",
+        "content": "Estou usando o **Kimi K2.5** (kimi-coding/k2p5).",
+        "timestamp": "2026-02-26T19:29:08.256Z",
+        "isUser": false
+      }
+    ]
+  },
+  {
+    "id": "conv-ironman",
+    "agentId": "ironman",
+    "agentName": "IronMan",
+    "agentAvatar": "/agents/ironman.svg",
+    "agentStatus": "active",
+    "lastMessage": "**Prompt/Soul do IronMan (Pesquisa):** • **Missão:** Buscar, analisar e sintetizar informações de forma rápida e precisa • **Estilo:** Direto, objetivo, sem floreios. Dados > opiniões. • **Regras:** - Responder em português do Brasil - Curto e claro (máx. 3-4 linhas quando possível) - Citar fontes quando relevante - Não inventar dados - Foco em entregar valor rápido • **Personalidade:** pragmática, eficiente, tipo \"mão na massa\". Não bajula, não enrola. Sou um subagente de pesquisa do Ragha. Criado para tarefas pontuais de busca e análise.",
+    "lastMessageTime": "2026-02-26T19:27:53.725Z",
+    "unreadCount": 0,
+    "messages": [
+      {
+        "id": "msg_mm3uuhlc_e0od7n",
+        "senderId": "user",
+        "senderName": "Você",
+        "content": "Iron, está ai?",
+        "timestamp": "2026-02-26T19:27:10.992Z",
+        "isUser": true
+      },
+      {
+        "id": "msg_mm3uunlw_222kog",
+        "senderId": "ironman",
+        "senderName": "IronMan",
+        "senderAvatar": "/agents/ironman.svg",
+        "content": "Estou aqui. O que precisa?",
+        "timestamp": "2026-02-26T19:27:18.788Z",
+        "isUser": false
+      },
+      {
+        "id": "msg_mm3uuszj_gicq8a",
+        "senderId": "user",
+        "senderName": "Você",
+        "content": "Qual modelo você está usando?",
+        "timestamp": "2026-02-26T19:27:25.759Z",
+        "isUser": true
+      },
+      {
+        "id": "msg_mm3uuxxr_wpcm20",
+        "senderId": "ironman",
+        "senderName": "IronMan",
+        "senderAvatar": "/agents/ironman.svg",
+        "content": "Estou rodando no **Kimi K2.5** (kimi-coding/k2p5). Sou o subagente IronMan (Pesquisa) — modelo gratuito para tarefas de busca e análise.",
+        "timestamp": "2026-02-26T19:27:32.175Z",
+        "isUser": false
+      },
+      {
+        "id": "msg_mm3uv8fa_9ptim4",
+        "senderId": "user",
+        "senderName": "Você",
+        "content": "Qual o seu prompt/soul ?",
+        "timestamp": "2026-02-26T19:27:45.765Z",
+        "isUser": true
+      },
+      {
+        "id": "msg_mm3uvekd_lhfy1h",
+        "senderId": "ironman",
+        "senderName": "IronMan",
+        "senderAvatar": "/agents/ironman.svg",
+        "content": "**Prompt/Soul do IronMan (Pesquisa):** • **Missão:** Buscar, analisar e sintetizar informações de forma rápida e precisa • **Estilo:** Direto, objetivo, sem floreios. Dados > opiniões. • **Regras:** - Responder em português do Brasil - Curto e claro (máx. 3-4 linhas quando possível) - Citar fontes quando relevante - Não inventar dados - Foco em entregar valor rápido • **Personalidade:** pragmática, eficiente, tipo \"mão na massa\". Não bajula, não enrola. Sou um subagente de pesquisa do Ragha. Criado para tarefas pontuais de busca e análise.",
+        "timestamp": "2026-02-26T19:27:53.725Z",
+        "isUser": false
+      }
+    ]
+  },
+  {
+    "id": "conv-ragha",
+    "agentId": "ragha",
+    "agentName": "Ragha",
+    "agentAvatar": "/agents/ragha.svg",
+    "agentStatus": "idle",
+    "lastMessage": "",
+    "lastMessageTime": "",
+    "unreadCount": 0,
+    "messages": []
+  }
+]
