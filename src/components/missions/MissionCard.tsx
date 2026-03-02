@@ -219,13 +219,13 @@ export function MissionCard({
       <div className={cn('h-1 w-full', status.bgColor.replace('/10', '/50'))} />
       
       <div className="p-4">
-        {/* Metadata (top) */}
-        <div className="space-y-1 mb-3">
-          <div className="text-xs text-muted-foreground">{formatBrasiliaDateTime(run.lastUpdateAt || run.queuedAt)}</div>
-          <div className="text-xs text-muted-foreground line-clamp-1">{cleanDisplayText(run.model || 'modelo não definido')}</div>
+        {/* 1) Data/Hora + Modelo */}
+        <div className="space-y-1 mb-3 text-xs">
+          <div className="text-muted-foreground"><span className="text-white/90">Data/Hora:</span> {formatBrasiliaDateTime(run.lastUpdateAt || run.queuedAt)}</div>
+          <div className="text-muted-foreground line-clamp-1"><span className="text-white/90">Modelo:</span> {cleanDisplayText(run.model || 'modelo não definido')}</div>
         </div>
 
-        {/* Header - Agent info + Priority */}
+        {/* 2) Nome do agente/agentes + tarefa resumida */}
         <div className="flex items-start gap-3 mb-3">
           <Avatar className="w-10 h-10 border-2 border-border/50">
             <AvatarImage src={`/agents/${run.agentId}.svg`} alt={cleanDisplayText(run.agentName || 'Agente')} />
@@ -249,7 +249,8 @@ export function MissionCard({
           </Badge>
         </div>
         
-        {/* Status Badge */}
+        {/* 3) Status */}
+        <div className="text-xs text-white/90 mb-1">Status</div>
         <div className="flex items-center gap-2 mb-3">
           <Badge className={cn('text-[10px] px-2 py-0.5', status.bgColor, status.color, status.borderColor)}>
             {status.icon}
