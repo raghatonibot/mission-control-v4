@@ -1,6 +1,6 @@
 ﻿import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { formatDistanceToNow } from 'date-fns';
+import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
@@ -40,6 +40,25 @@ function cleanDisplayText(value?: string) {
     .replace(/\s{2,}/g, ' ')
     .trim();
   return out;
+}
+
+function formatBrasiliaDateTime(value?: string) {
+  if (!value) return '—';
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return '—';
+  try {
+    return new Intl.DateTimeFormat('pt-BR', {
+      timeZone: 'America/Sao_Paulo',
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false,
+    }).format(date);
+  } catch {
+    return format(date, 'dd/MM/yyyy HH:mm', { locale: ptBR });
+  }
 }
 
 // Status configuration with icons and colors
@@ -170,7 +189,6 @@ export function MissionCard({
   const completedSteps = steps.filter(s => s.status === 'completed').length;
   const progress = (completedSteps / steps.length) * 100;
   
-  const isTerminal = run.status === 'done' || run.status === 'failed' || run.status === 'stopped';
   const isInbox = run.status === 'queued';
   const isWorking = run.status === 'running' || run.status === 'stopping';
   const isReview = run.status === 'review' || run.status === 'waiting';
@@ -204,7 +222,7 @@ export function MissionCard({
         {/* Header - Agent info + Priority */}
         <div className="flex items-start gap-3 mb-3">
           <Avatar className="w-10 h-10 border-2 border-border/50">
-            <AvatarImage src={`/avatars/${run.agentId}.png`} alt={run.status === 'queued' ? cleanDisplayText(run.agentName || 'Ragha') : cleanDisplayText(run.taskTitle)} />
+            <AvatarImage src={`/agents/${run.agentId}.svg`} alt={cleanDisplayText(run.agentName || 'Agente')} />
             <AvatarFallback className={cn('text-sm font-medium', status.bgColor, status.color)}>
               {run.agentName?.charAt(0).toUpperCase() || 'A'}
             </AvatarFallback>
@@ -212,12 +230,10 @@ export function MissionCard({
           
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 flex-wrap">
-              <h4 className="font-semibold text-white text-sm line-clamp-1">{run.status === 'queued' ? cleanDisplayText(run.agentName || 'Ragha') : cleanDisplayText(run.taskTitle)}</h4>
+              <h4 className="font-semibold text-white text-sm line-clamp-1">{cleanDisplayText(run.agentName || 'Agente')}</h4>
             </div>
             <div className="flex items-center gap-2 mt-1 flex-wrap">
-              <span className="text-xs text-muted-foreground">{run.status === 'queued' ? cleanDisplayText(run.taskTitle) : cleanDisplayText(run.agentName)}</span>
-              <span className="text-xs text-muted-foreground">•</span>
-              <span className="text-xs text-muted-foreground">{cleanDisplayText(run.model)}</span>
+              <span className="text-xs text-muted-foreground line-clamp-1">{cleanDisplayText(run.taskTitle || run.summary || 'Sem tarefa')}</span>
             </div>
           </div>
           
@@ -384,12 +400,14 @@ export function MissionCard({
           )}
         </div>
 
-        {/* Footer - Timestamp + Expand */}
-        <div className="flex items-center justify-between">
-          <span className="text-xs text-muted-foreground">
-            {formatDistanceToNow(new Date(run.queuedAt), { addSuffix: true, locale: ptBR })}
-          </span>
-          
+        {/* Metadata */}
+        <div className="space-y-1 mb-3">
+          <div className="text-xs text-muted-foreground">{formatBrasiliaDateTime(run.lastUpdateAt || run.queuedAt)}</div>
+          <div className="text-xs text-muted-foreground line-clamp-1">{cleanDisplayText(run.model || 'modelo não definido')}</div>
+        </div>
+
+        {/* Footer - Expand */}
+        <div className="flex items-center justify-end">
           <Collapsible open={isExpanded} onOpenChange={setIsExpanded}>
             <CollapsibleTrigger asChild>
               <Button variant="ghost" size="sm" className="h-7 px-2 text-xs text-muted-foreground hover:text-white">
