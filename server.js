@@ -160,12 +160,18 @@ function normalizeRunsDataset(runs, tasks) {
       seen.add(dedupKey);
     }
 
+    const canonicalAgentId = mapCoreAgentToRuntime(String(run.agentId || '')) || String(run.agentId || '');
+    const canonicalAgentName = canonicalAgentId
+      ? (String(canonicalAgentId).charAt(0).toUpperCase() + String(canonicalAgentId).slice(1))
+      : sanitizeText(run.agentName || '');
+
     const cleaned = {
       ...run,
+      agentId: canonicalAgentId || run.agentId,
       taskTitle: sanitizeText(run.taskTitle || ''),
       summary: sanitizeText(run.summary || ''),
       lastError: sanitizeText(run.lastError || ''),
-      agentName: sanitizeText(run.agentName || ''),
+      agentName: sanitizeText(canonicalAgentName || run.agentName || ''),
     };
 
     if (
@@ -704,22 +710,10 @@ function clearChatAgentMode(chatId) {
   saveTelegramModes(all.filter((m) => String(m.chatId) !== String(chatId)));
 }
 function mapCoreAgentToRuntime(agentId) {
+  const key = String(agentId || '').toLowerCase();
   const m = {
-    monica: 'ragha',
-    dwight: 'ironman',
-    kelly: 'blackwidow',
-    rachel: 'pepper',
-    ross: 'thor',
-    pam: 'pepper',
-    Ragha: 'ragha',
-  };
-  return m[String(agentId || '').toLowerCase()] || String(agentId || '').toLowerCase();
-}
-
-function resolveAgentIdFromText(input) {
-  const t = String(input || '').toLowerCase().trim();
-  const map = {
-    Ragha: 'ragha',
+    ragha: 'ragha',
+    main: 'main',
     ironman: 'ironman',
     fury: 'fury',
     shuri: 'shuri',
@@ -729,13 +723,24 @@ function resolveAgentIdFromText(input) {
     blackwidow: 'blackwidow',
     hawkeye: 'hawkeye',
     wanda: 'wanda',
-    monica: 'ragha',
-    dwight: 'ironman',
-    kelly: 'blackwidow',
-    rachel: 'pepper',
-    ross: 'thor',
-    pam: 'pepper',
-    Ragha: 'ragha'
+  };
+  return m[key] || key;
+}
+
+function resolveAgentIdFromText(input) {
+  const t = String(input || '').toLowerCase().trim();
+  const map = {
+    ragha: 'ragha',
+    main: 'main',
+    ironman: 'ironman',
+    fury: 'fury',
+    shuri: 'shuri',
+    thor: 'thor',
+    hulk: 'hulk',
+    pepper: 'pepper',
+    blackwidow: 'blackwidow',
+    hawkeye: 'hawkeye',
+    wanda: 'wanda'
   };
   return map[t] || null;
 }
@@ -2155,7 +2160,7 @@ app.post('/api/inbox/telegram', inboxAuth, async (req, res) => {
   // 3) Conversation vs Task
   const normalized = normalizeTaskPrefix(rawText);
 
-  // 3.1) Direct agent-targeted one-shot: "dwight: ..."
+  // 3.1) Direct agent-targeted one-shot: "ironman: ..."
   const directAgent = rawText.match(/^([a-z0-9_-]+)\s*:\s*([\s\S]+)$/i);
   if (!normalized && directAgent) {
     const forcedAgentId = resolveAgentIdFromText(directAgent[1]);
