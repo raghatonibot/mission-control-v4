@@ -121,13 +121,6 @@ const STATUS_CONFIG: Record<RunStatus, { icon: React.ReactNode; label: string; c
   },
 };
 
-// Priority configuration
-const PRIORITY_CONFIG: Record<string, { icon: string; color: string; bgColor: string; label: string }> = {
-  high: { icon: '!!', color: 'text-red-400', bgColor: 'bg-red-500/10', label: 'Alta' },
-  medium: { icon: '!', color: 'text-yellow-400', bgColor: 'bg-yellow-500/10', label: 'Média' },
-  low: { icon: '-', color: 'text-emerald-400', bgColor: 'bg-emerald-500/10', label: 'Baixa' },
-  critical: { icon: '!!!', color: 'text-red-500', bgColor: 'bg-red-500/20', label: 'Crítica' },
-};
 
 interface MissionCardProps {
   run: Run;
@@ -184,7 +177,6 @@ export function MissionCard({
   const [isHovered, setIsHovered] = useState(false);
   
   const status = STATUS_CONFIG[run.status];
-  const priority = PRIORITY_CONFIG[run.priority || 'medium'];
   const steps = generateMockSteps(run);
   const completedSteps = steps.filter(s => s.status === 'completed').length;
   const progress = (completedSteps / steps.length) * 100;
@@ -219,37 +211,33 @@ export function MissionCard({
       <div className={cn('h-1 w-full', status.bgColor.replace('/10', '/50'))} />
       
       <div className="p-4">
-        {/* 1) Data/Hora + Modelo */}
-        <div className="space-y-1 mb-3 text-xs">
-          <div className="text-muted-foreground"><span className="text-white/90">Data/Hora:</span> {formatBrasiliaDateTime(run.lastUpdateAt || run.queuedAt)}</div>
-          <div className="text-muted-foreground line-clamp-1"><span className="text-white/90">Modelo:</span> {cleanDisplayText(run.model || 'modelo não definido')}</div>
-        </div>
-
-        {/* 2) Nome do agente/agentes + tarefa resumida */}
-        <div className="flex items-start gap-3 mb-3">
-          <Avatar className="w-10 h-10 border-2 border-border/50">
+        {/* 1) Nome do agente/agentes */}
+        <div className="flex items-center gap-3 mb-2">
+          <Avatar className="w-10 h-10 border-2 border-border/50 shrink-0">
             <AvatarImage src={`/agents/${run.agentId}.svg`} alt={cleanDisplayText(run.agentName || 'Agente')} />
             <AvatarFallback className={cn('text-sm font-medium', status.bgColor, status.color)}>
               {run.agentName?.charAt(0).toUpperCase() || 'A'}
             </AvatarFallback>
           </Avatar>
-          
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-2 flex-wrap">
-              <h4 className="font-semibold text-white text-sm line-clamp-1">{cleanDisplayText(run.agentName || 'Agente')}</h4>
-            </div>
-            <div className="flex items-center gap-2 mt-1 flex-wrap">
-              <span className="text-xs text-muted-foreground line-clamp-1">{cleanDisplayText(run.taskTitle || run.summary || 'Sem tarefa')}</span>
-            </div>
+          <div className="min-w-0">
+            <div className="text-[11px] text-white/80">Agente</div>
+            <h4 className="font-semibold text-white text-sm leading-tight line-clamp-1">{cleanDisplayText(run.agentName || 'Agente')}</h4>
           </div>
-          
-          {/* Priority Badge */}
-          <Badge variant="outline" className={cn('text-[10px] px-1.5 py-0.5 h-5', priority.bgColor, priority.color, priority.color.replace('text-', 'border-') + '/30')}>
-            {priority.icon} {priority.label}
-          </Badge>
         </div>
-        
-        {/* 3) Status */}
+
+        {/* 2) Tarefa resumida */}
+        <div className="mb-2">
+          <div className="text-[11px] text-white/80">Tarefa</div>
+          <div className="text-xs text-muted-foreground line-clamp-2">{cleanDisplayText(run.taskTitle || run.summary || 'Sem tarefa')}</div>
+        </div>
+
+        {/* 3) Data/Hora */}
+        <div className="mb-2 text-xs text-muted-foreground"><span className="text-white/90">Data/Hora:</span> {formatBrasiliaDateTime(run.lastUpdateAt || run.queuedAt)}</div>
+
+        {/* 4) Modelo */}
+        <div className="mb-2 text-xs text-muted-foreground line-clamp-1"><span className="text-white/90">Modelo:</span> {cleanDisplayText(run.model || 'modelo não definido')}</div>
+
+        {/* 5) Status */}
         <div className="text-xs text-white/90 mb-1">Status</div>
         <div className="flex items-center gap-2 mb-3">
           <Badge className={cn('text-[10px] px-2 py-0.5', status.bgColor, status.color, status.borderColor)}>
