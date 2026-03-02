@@ -219,6 +219,12 @@ export function MissionCard({
       <div className={cn('h-1 w-full', status.bgColor.replace('/10', '/50'))} />
       
       <div className="p-4">
+        {/* Metadata (top) */}
+        <div className="space-y-1 mb-3">
+          <div className="text-xs text-muted-foreground">{formatBrasiliaDateTime(run.lastUpdateAt || run.queuedAt)}</div>
+          <div className="text-xs text-muted-foreground line-clamp-1">{cleanDisplayText(run.model || 'modelo não definido')}</div>
+        </div>
+
         {/* Header - Agent info + Priority */}
         <div className="flex items-start gap-3 mb-3">
           <Avatar className="w-10 h-10 border-2 border-border/50">
@@ -258,33 +264,9 @@ export function MissionCard({
           )}
         </div>
         
-        {/* Progress Bar */}
-        <div className="mb-3">
-          <div className="flex items-center justify-between text-xs mb-1.5">
-            <div className="flex items-center gap-1.5 text-muted-foreground">
-              <ListTodo className="w-3.5 h-3.5" />
-              <span>Progresso</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="text-white font-medium">{completedSteps}/{steps.length}</span>
-              <span className="text-muted-foreground">({Math.round(progress)}%)</span>
-            </div>
-          </div>
-          <div className="relative">
-            <Progress value={progress} className="h-2" />
-            {/* Animated pulse for running */}
-            {run.status === 'running' && (
-              <motion.div
-                className="absolute inset-0 h-2 rounded-full bg-emerald-400/30"
-                animate={{ opacity: [0.3, 0.6, 0.3] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-              />
-            )}
-          </div>
-        </div>
-        
+
         {/* Inline Action Buttons */}
-        <div className="flex items-center gap-2 mb-3">
+        <div className="flex items-center gap-2 mb-3 flex-wrap">
           {isInbox && (
             <>
               <Button
@@ -400,10 +382,28 @@ export function MissionCard({
           )}
         </div>
 
-        {/* Metadata */}
-        <div className="space-y-1 mb-3">
-          <div className="text-xs text-muted-foreground">{formatBrasiliaDateTime(run.lastUpdateAt || run.queuedAt)}</div>
-          <div className="text-xs text-muted-foreground line-clamp-1">{cleanDisplayText(run.model || 'modelo não definido')}</div>
+        {/* Progress Bar (bottom) */}
+        <div className="mb-3">
+          <div className="flex items-center justify-between text-xs mb-1.5">
+            <div className="flex items-center gap-1.5 text-muted-foreground">
+              <ListTodo className="w-3.5 h-3.5" />
+              <span>Progresso</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-white font-medium">{completedSteps}/{steps.length}</span>
+              <span className="text-muted-foreground">({Math.round(progress)}%)</span>
+            </div>
+          </div>
+          <div className="relative">
+            <Progress value={progress} className="h-2" />
+            {run.status === 'running' && (
+              <motion.div
+                className="absolute inset-0 h-2 rounded-full bg-emerald-400/30"
+                animate={{ opacity: [0.3, 0.6, 0.3] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+              />
+            )}
+          </div>
         </div>
 
         {/* Footer - Expand */}
