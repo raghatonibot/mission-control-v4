@@ -220,25 +220,22 @@ export function MissionCard({
             </AvatarFallback>
           </Avatar>
           <div className="min-w-0">
-            <div className="text-[11px] text-white/80">Agente</div>
             <h4 className="font-semibold text-white text-sm leading-tight line-clamp-1">{cleanDisplayText(run.agentName || 'Agente')}</h4>
           </div>
         </div>
 
         {/* 2) Tarefa resumida */}
         <div className="mb-2">
-          <div className="text-[11px] text-white/80">Tarefa</div>
           <div className="text-xs text-muted-foreground line-clamp-2">{cleanDisplayText(run.taskTitle || run.summary || 'Sem tarefa')}</div>
         </div>
 
         {/* 3) Data/Hora */}
-        <div className="mb-2 text-xs text-muted-foreground"><span className="text-white/90">Data/Hora:</span> {formatBrasiliaDateTime(run.lastUpdateAt || run.queuedAt)}</div>
+        <div className="mb-2 text-xs text-muted-foreground">{formatBrasiliaDateTime(run.lastUpdateAt || run.queuedAt)}</div>
 
         {/* 4) Modelo */}
-        <div className="mb-2 text-xs text-muted-foreground line-clamp-1"><span className="text-white/90">Modelo:</span> {cleanDisplayText(run.model || 'modelo não definido')}</div>
+        <div className="mb-2 text-xs text-muted-foreground line-clamp-1">{cleanDisplayText(run.model || 'modelo não definido')}</div>
 
         {/* 5) Status */}
-        <div className="text-xs text-white/90 mb-1">Status</div>
         <div className="flex items-center gap-2 mb-3">
           <Badge className={cn('text-[10px] px-2 py-0.5', status.bgColor, status.color, status.borderColor)}>
             {status.icon}
