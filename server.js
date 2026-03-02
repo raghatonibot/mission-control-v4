@@ -787,6 +787,7 @@ async function notifyTelegram(text) {
 
   // User preference: hide automatic technical task-result spam in Telegram.
   if (/^Resultado da Task:/i.test(raw)) return;
+  if (/(Process still running|Exec failed|Subagent .* timed out|smoke auth|GATEWAY_PREFLIGHT_FAIL|tool_violation|spawn_error|sessions_spawn|agents_list\.ok=|spawn\.ok=)/i.test(raw)) return;
 
   const normalized = raw
     .replace(/PrÃ³xima aÃ§Ã£o/g, 'Próxima ação')
@@ -2577,7 +2578,7 @@ async function startRun(run) {
 
     await notifyTelegram(`[${agent.id}] coletando conteÃºdo`);
 
-    const taskText = `MissÃ£o\n\nTask: ${runs[idx].taskTitle}\n\nInstruÃ§Ãµes:\n- Assista/abra o post completo\n- Extraia o nÃºcleo da ideia\n- Gere um plano de aÃ§Ã£o com etapas definidas (P0/P1)\n- Entregue um briefing claro e acionÃ¡vel\n\nCONTRATO DE SAÃDA (obrigatÃ³rio):\n[ACHADOS]\n- 3 a 5 bullets objetivos\n[EVIDENCIAS]\n- links, trechos, sinais observÃ¡veis (sem inventar)\n[RESUMO]\n- 1 parÃ¡grafo final com conclusÃ£o prÃ¡tica\n\nContexto:\n${runs[idx].summary || ''}\n\nTwitter/X (stealth):\n- Perfil persistente jÃ¡ logado: C:\\tmp\\stealth-x-profile\n- Cookies exportados (se precisar): C:\\tmp\\x-cookies.json\n- NÃ£o peÃ§a senha.\n\nInstagram:\n- SessÃ£o pode estar logada no browser host\n- Se houver bloqueio/challenge, reportar claramente\n\nSkills permitidas para este agente (use APENAS estas; se vazio, nÃ£o use tools):\n${skillRefs || '(nenhuma)'}\n\nRegra anti-alucinaÃ§Ã£o:\n- Se vocÃª nÃ£o conseguir acessar o conteÃºdo/entrada, NÃƒO invente. Diga "nÃ£o consegui acessar" e peÃ§a o print/trecho.\n`;
+    const taskText = `Missão\n\nTask: ${runs[idx].taskTitle}\n\nInstruções:\n- Execute a tarefa exatamente como descrita no título e no contexto\n- Se faltar entrada obrigatória (link, arquivo, ID, credencial ou escopo), pare e solicite objetivamente\n- Entregue resultado prático com evidências verificáveis\n\nCONTRATO DE SAÍDA (obrigatório):\n[ACHADOS]\n- 3 a 5 bullets objetivos\n[EVIDÊNCIAS]\n- links, trechos, arquivos ou sinais observáveis (sem inventar)\n[RESUMO]\n- 1 parágrafo final com conclusão prática\n\nContexto:\n${runs[idx].summary || ''}\n\nSkills permitidas para este agente (use APENAS estas; se vazio, não use tools):\n${skillRefs || '(nenhuma)'}\n\nRegra anti-alucinação:\n- Se você não conseguir acessar o conteúdo/entrada, NÃO invente. Diga "não consegui acessar" e peça o material faltante.\n`;
 
     await notifyTelegram(`[${agent.id}] executando`);
 
@@ -3207,12 +3208,6 @@ async function gatewayPreflight() {
     if (!token) throw new Error('missing_OPENCLAW_GATEWAY_TOKEN');
 
     await toolsInvoke('agents_list', {});
-    await toolsInvoke('sessions_spawn', {
-      task: 'smoke auth check',
-      mode: 'run',
-      cleanup: 'delete',
-      runTimeoutSeconds: 90,
-    });
 
     gatewayAuthReady = true;
     gatewayAuthLastError = '';

@@ -263,7 +263,7 @@ export function MissionsKanban({ runs, onReload }: MissionsKanbanProps) {
                 key={column.id}
                 layout
                 className={cn(
-                  'w-[320px] shrink-0 flex flex-col rounded-xl border transition-colors',
+                  'w-[400px] shrink-0 flex flex-col rounded-xl border transition-colors',
                   column.bgColor,
                   column.borderColor,
                   'bg-opacity-30'
