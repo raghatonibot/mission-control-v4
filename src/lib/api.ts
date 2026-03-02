@@ -149,6 +149,11 @@ export const api = {
   stopRunAll: (id: string) => request<{ ok: true }>('/api/runs/' + id + '/stopall', { method: 'POST' }),
   pauseRun: (id: string) => request<{ ok: true }>('/api/runs/' + id + '/pause', { method: 'POST' }),
   retryRun: (id: string) => request<{ ok: true; data: JsonMap }>('/api/runs/' + id + '/retry', { method: 'POST' }),
+  workflowRunAction: (id: string, action: 'approve' | 'adjust' | 'cancel' | 'pause' | 'approved' | 'refazer' | 'complete') =>
+    request<{ ok: true; data: JsonMap }>('/api/workflow/runs/' + id + '/action', {
+      method: 'POST',
+      body: JSON.stringify({ action }),
+    }),
   reassignRun: (id: string, agentId: string) =>
     request<{ ok: true; data: JsonMap }>('/api/runs/' + id + '/reassign', {
       method: 'POST',

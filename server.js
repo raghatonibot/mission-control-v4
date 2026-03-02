@@ -1553,6 +1553,88 @@ app.post('/api/cards/:entityType/:id/findings', authMiddleware, (req, res) => {
   }
 });
 
+function updateTaskStageFromRuns(taskId) {
+  const tasks = listTasks();
+  const idx = tasks.findIndex((t) => String(t.id) === String(taskId));
+  if (idx === -1) return null;
+
+  const stage = deriveTaskRunStage(tasks[idx], listRuns());
+  const map = {
+    queued: 'inbox',
+    running: 'working',
+    stopping: 'working',
+    waiting: 'review',
+    review: 'review',
+    done: 'done',
+    stopped: 'cancelled',
+    failed: 'blocked',
+  };
+  tasks[idx] = { ...tasks[idx], status: map[stage] || tasks[idx].status || 'backlog', updatedAt: new Date().toISOString() };
+  saveTasks(tasks);
+  return tasks[idx];
+}
+
+app.post('/api/workflow/runs/:id/action', authMiddleware, async (req, res) => {
+  const id = String(req.params.id || '');
+  const action = String(req.body?.action || '').toLowerCase();
+  const actor = req?.user?.email || 'system';
+  const now = new Date().toISOString();
+
+  const runs = listRuns();
+  const idx = runs.findIndex((r) => String(r.id) === id);
+  if (idx === -1) return res.status(404).json({ ok: false, error: 'run_not_found' });
+
+  const run = runs[idx];
+  const current = String(run.status || 'queued');
+
+  const nextByAction = {
+    approve: 'running',
+    ajustar: 'queued',
+    adjust: 'queued',
+    cancel: 'stopped',
+    cancelar: 'stopped',
+    pause: 'stopping',
+    approved: 'done',
+    aprovar: 'done',
+    refazer: 'running',
+    rework: 'running',
+    complete: 'review',
+  };
+  const next = nextByAction[action];
+  if (!next) return res.status(400).json({ ok: false, error: 'invalid_action' });
+
+  const allowed = {
+    queued: ['approve', 'adjust', 'ajustar', 'cancel', 'cancelar'],
+    running: ['pause', 'cancel', 'cancelar', 'complete'],
+    stopping: ['cancel', 'cancelar', 'complete'],
+    waiting: ['approved', 'aprovar', 'refazer', 'rework', 'cancel', 'cancelar'],
+    review: ['approved', 'aprovar', 'refazer', 'rework', 'cancel', 'cancelar'],
+    done: [],
+    stopped: [],
+    failed: ['refazer', 'rework'],
+  };
+
+  if (!(allowed[current] || []).includes(action)) {
+    return res.status(400).json({ ok: false, error: 'invalid_transition', status: current, action });
+  }
+
+  if (current === next) {
+    return res.json({ ok: true, data: run, idempotent: true });
+  }
+
+  runs[idx] = {
+    ...run,
+    status: next,
+    lastUpdateAt: now,
+    ...(next === 'done' || next === 'stopped' ? { endedAt: now } : {}),
+  };
+  saveRuns(runs);
+  appendRunEvent(id, { type: 'workflow_action', action, from: current, to: next, actor });
+
+  const updatedTask = updateTaskStageFromRuns(run.taskId);
+  return res.json({ ok: true, data: runs[idx], task: updatedTask || null });
+});
+
 app.post('/api/decisions', authMiddleware, (req, res) => {
   const entityType = normalizeEntityType(req.body?.entityType);
   const id = String(req.body?.id || '');
@@ -2006,7 +2088,19 @@ app.post('/api/inbox/telegram', inboxAuth, async (req, res) => {
       return res.status(404).json({ ok: false, error: 'task_not_found' });
     }
 
+    const taskRuns = listRuns().filter((r) => String(r.taskId) === String(task.id));
+    const activeRun = taskRuns.find((r) => ['queued', 'running', 'stopping', 'waiting', 'review'].includes(String(r.status || '')));
+
     if (cb.action === 'cancel') {
+      if (activeRun) {
+        const runs = listRuns();
+        const ridx = runs.findIndex((r) => String(r.id) === String(activeRun.id));
+        if (ridx !== -1) {
+          runs[ridx] = { ...runs[ridx], status: 'stopped', endedAt: new Date().toISOString(), lastUpdateAt: new Date().toISOString() };
+          saveRuns(runs);
+          appendRunEvent(activeRun.id, { type: 'workflow_action', action: 'cancel', from: activeRun.status, to: 'stopped', actor: 'telegram' });
+        }
+      }
       task.status = 'cancelled';
       task.updatedAt = new Date().toISOString();
       saveTasks(tasks);
@@ -2027,6 +2121,15 @@ app.post('/api/inbox/telegram', inboxAuth, async (req, res) => {
       task.status = 'backlog';
       task.updatedAt = new Date().toISOString();
       saveTasks(tasks);
+      if (activeRun) {
+        const runs = listRuns();
+        const ridx = runs.findIndex((r) => String(r.id) === String(activeRun.id));
+        if (ridx !== -1 && String(runs[ridx].status) === 'queued') {
+          runs[ridx] = { ...runs[ridx], status: 'running', lastUpdateAt: new Date().toISOString() };
+          saveRuns(runs);
+          appendRunEvent(activeRun.id, { type: 'workflow_action', action: 'approve', from: 'queued', to: 'running', actor: 'telegram' });
+        }
+      }
       await notifyTelegram(`Aprovado: ${task.id}`);
       return res.json({ ok: true, action: 'approve', taskId: task.id });
     }

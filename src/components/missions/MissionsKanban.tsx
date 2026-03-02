@@ -130,22 +130,33 @@ export function MissionsKanban({ runs, onReload }: MissionsKanbanProps) {
   
   // Action handlers - using available API methods
   const handleApprove = async (id: string) => {
-    await api.decide({ entityType: 'run', id, decision: 'approve' });
+    // Inbox: approve -> Working | Review: approved -> Done
+    const run = runs.find((r) => r.id === id);
+    const action = run && (run.status === 'review' || run.status === 'waiting') ? 'approved' : 'approve';
+    await api.workflowRunAction(id, action);
     onReload();
   };
   
+  const handleAdjust = async (id: string) => {
+    await api.workflowRunAction(id, 'adjust');
+    onReload();
+  };
+
   const handleReject = async (id: string) => {
-    await api.decide({ entityType: 'run', id, decision: 'reject' });
+    // Review reject = rework, others = cancel
+    const run = runs.find((r) => r.id === id);
+    const action = run && (run.status === 'review' || run.status === 'waiting') ? 'refazer' : 'cancel';
+    await api.workflowRunAction(id, action);
     onReload();
   };
   
   const handlePause = async (id: string) => {
-    await api.pauseRun(id);
+    await api.workflowRunAction(id, 'pause');
     onReload();
   };
   
   const handleStop = async (id: string) => {
-    await api.stopRun(id);
+    await api.workflowRunAction(id, 'cancel');
     onReload();
   };
   
@@ -314,6 +325,7 @@ export function MissionsKanban({ runs, onReload }: MissionsKanbanProps) {
                           run={run}
                           onApprove={handleApprove}
                           onReject={handleReject}
+                          onAdjust={handleAdjust}
                           onPause={handlePause}
                           onStop={handleStop}
                           onRetry={handleRetry}

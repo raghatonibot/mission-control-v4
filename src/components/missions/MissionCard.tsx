@@ -114,6 +114,7 @@ interface MissionCardProps {
   run: Run;
   onApprove?: (id: string) => void;
   onReject?: (id: string) => void;
+  onAdjust?: (id: string) => void;
   onPause?: (id: string) => void;
   onStop?: (id: string) => void;
   onRetry?: (id: string) => void;
@@ -154,6 +155,7 @@ export function MissionCard({
   onApprove, 
   onReject, 
   onPause,
+  onAdjust,
   onStop,
   onRetry,
   onMove,
@@ -284,6 +286,18 @@ export function MissionCard({
               <Button
                 size="sm"
                 variant="outline"
+                className="h-7 px-2.5 text-xs border-amber-400/30 text-amber-400 hover:bg-amber-400/10 hover:text-amber-300"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onAdjust?.(run.id);
+                }}
+              >
+                <RotateCcw className="w-3.5 h-3.5 mr-1.5" />
+                Ajustar
+              </Button>
+              <Button
+                size="sm"
+                variant="outline"
                 className="h-7 px-2.5 text-xs border-red-400/30 text-red-400 hover:bg-red-400/10 hover:text-red-300"
                 onClick={(e) => {
                   e.stopPropagation();
@@ -349,7 +363,7 @@ export function MissionCard({
                 }}
               >
                 <RotateCcw className="w-3.5 h-3.5 mr-1.5" />
-                Revisar
+                Refazer
               </Button>
             </>
           )}
