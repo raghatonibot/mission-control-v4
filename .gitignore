@@ -1,0 +1,17 @@
+﻿node_modules/
+dist/
+.tmp-esbuild/
+*.log
+*.db
+data/*.db
+data/sessions.db
+data/messages.db
+.env
+.env.*
+!.env.example
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.DS_Store
+Thumbs.db
