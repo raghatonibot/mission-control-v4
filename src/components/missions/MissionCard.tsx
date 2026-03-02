@@ -252,13 +252,14 @@ export function MissionCard({
         
 
         {/* Inline Action Buttons */}
-        <div className="flex items-center gap-2 mb-3 flex-wrap">
+        <div className="mb-3 overflow-x-auto">
+          <div className="flex items-center gap-1.5 min-w-max">
           {isInbox && (
             <>
               <Button
                 size="sm"
                 variant="outline"
-                className="h-7 px-2.5 text-xs border-emerald-400/30 text-emerald-400 hover:bg-emerald-400/10 hover:text-emerald-300"
+                className="h-6 px-2 text-[11px] border-emerald-400/30 text-emerald-400 hover:bg-emerald-400/10 hover:text-emerald-300"
                 onClick={(e) => {
                   e.stopPropagation();
                   onApprove?.(run.id);
@@ -270,7 +271,7 @@ export function MissionCard({
               <Button
                 size="sm"
                 variant="outline"
-                className="h-7 px-2.5 text-xs border-amber-400/30 text-amber-400 hover:bg-amber-400/10 hover:text-amber-300"
+                className="h-6 px-2 text-[11px] border-amber-400/30 text-amber-400 hover:bg-amber-400/10 hover:text-amber-300"
                 onClick={(e) => {
                   e.stopPropagation();
                   onAdjust?.(run.id);
@@ -282,7 +283,7 @@ export function MissionCard({
               <Button
                 size="sm"
                 variant="outline"
-                className="h-7 px-2.5 text-xs border-red-400/30 text-red-400 hover:bg-red-400/10 hover:text-red-300"
+                className="h-6 px-2 text-[11px] border-red-400/30 text-red-400 hover:bg-red-400/10 hover:text-red-300"
                 onClick={(e) => {
                   e.stopPropagation();
                   onReject?.(run.id);
@@ -299,7 +300,7 @@ export function MissionCard({
               <Button
                 size="sm"
                 variant="outline"
-                className="h-7 px-2.5 text-xs"
+                className="h-6 px-2 text-[11px]"
                 onClick={(e) => {
                   e.stopPropagation();
                   onPause?.(run.id);
@@ -311,7 +312,7 @@ export function MissionCard({
               <Button
                 size="sm"
                 variant="outline"
-                className="h-7 px-2.5 text-xs border-red-400/30 text-red-400 hover:bg-red-400/10"
+                className="h-6 px-2 text-[11px] border-red-400/30 text-red-400 hover:bg-red-400/10"
                 onClick={(e) => {
                   e.stopPropagation();
                   onStop?.(run.id);
@@ -328,7 +329,7 @@ export function MissionCard({
               <Button
                 size="sm"
                 variant="outline"
-                className="h-7 px-2.5 text-xs border-emerald-400/30 text-emerald-400 hover:bg-emerald-400/10 hover:text-emerald-300"
+                className="h-6 px-2 text-[11px] border-emerald-400/30 text-emerald-400 hover:bg-emerald-400/10 hover:text-emerald-300"
                 onClick={(e) => {
                   e.stopPropagation();
                   onApprove?.(run.id);
@@ -340,7 +341,7 @@ export function MissionCard({
               <Button
                 size="sm"
                 variant="outline"
-                className="h-7 px-2.5 text-xs border-amber-400/30 text-amber-400 hover:bg-amber-400/10 hover:text-amber-300"
+                className="h-6 px-2 text-[11px] border-amber-400/30 text-amber-400 hover:bg-amber-400/10 hover:text-amber-300"
                 onClick={(e) => {
                   e.stopPropagation();
                   onReject?.(run.id);
@@ -356,7 +357,7 @@ export function MissionCard({
             <Button
               size="sm"
               variant="outline"
-              className="h-7 px-2.5 text-xs border-blue-400/30 text-blue-400 hover:bg-blue-400/10"
+              className="h-6 px-2 text-[11px] border-blue-400/30 text-blue-400 hover:bg-blue-400/10"
               onClick={(e) => {
                 e.stopPropagation();
                 onRetry?.(run.id);
@@ -366,6 +367,7 @@ export function MissionCard({
               Retry
             </Button>
           )}
+          </div>
         </div>
 
         {/* Progress Bar (bottom) */}
@@ -543,6 +545,7 @@ export function MissionCard({
     </motion.div>
   );
 }
+
 
 
 
